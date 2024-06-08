@@ -1,6 +1,3 @@
-// Use DBML to define your database structure
-// Docs: https://dbml.dbdiagram.io/docs
-
 Table Orders {
   order_id integer [primary key]
   customer_id int
@@ -14,6 +11,7 @@ Table OrderItems {
   item_id integer
   quantity int
   price int
+  wasabi bool
 }
 
 Table MenuItems {
@@ -32,4 +30,5 @@ Table Customers {
 Ref: Orders.order_id < OrderItems.order_id
 Ref: MenuItems.item_id < OrderItems.item_id
 Ref: Orders.customer_id - Customers.customer_id
+
 
