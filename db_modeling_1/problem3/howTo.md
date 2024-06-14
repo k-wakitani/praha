@@ -18,3 +18,5 @@ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=my-secret-pw -d -p 3307
 - Password: my-secret-pw
 
 Public Key Retrieval is not allowedというエラーが生じたため，Driver SettingsのDriver propertiesで，Add new propertiesを選択し，allowPublicKeyRetrieval: trueを追加
+
+テーブル一覧が表示されない不具合がある・・・．
