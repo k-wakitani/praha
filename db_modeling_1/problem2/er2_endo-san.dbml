@@ -1,0 +1,50 @@
+Table Orders {
+  order_id integer [primary key]
+  customer_id int
+  order_date datetime
+  payment_status boolean
+  created_at timestamp
+}
+
+Table Carts {
+  cart_id int [pk, increment]
+  customer_id int [ref: > Customers.customer_id]
+  created_at timestamp
+}
+
+Table CartItems {
+  cart_item_id integer [primary key]
+  cart_id integer [ref: > Carts.cart_id]
+  item_id integer
+  quantity int
+  price int
+  tax decimal(5,3)
+  wasabi bool
+  shari int
+  created_at timestamp
+}
+
+Table MenuItems {
+  item_id integer [primary key]
+  item_name varchar
+  category varchar [ref: > Categories.category_id]
+  price int
+  unit int
+  created_at timestamp
+}
+
+Table Categories {
+  category_id varchar [pk]
+  category_name varchar
+  created_at timestamp
+}
+
+Table Customers {
+  customer_id int
+  name varchar
+  phone_number varchar
+  created_at timestamp
+}
+
+Ref: MenuItems.item_id < CartItems.item_id
+Ref: Orders.customer_id > Customers.customer_id
