@@ -1,7 +1,9 @@
+-- CustomerIDが1の顧客の最新の注文の合計金額を得る
 -- 注文IDを取得
 SELECT @order_id := order_id FROM Orders
-WHERE customer_id = (SELECT customer_id FROM Customers WHERE customer_name = '山田 太郎')
-AND order_date = '2024-06-08 15:00:00';
+WHERE customer_id = 1
+ORDER BY order_date DESC
+LIMIT 1;
 
 -- 合計金額を取得
 SELECT SUM(quantity * price) AS total_amount
