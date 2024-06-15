@@ -1,0 +1,41 @@
+Table Threads {
+  thread_id varchar [pk]
+  message_id varchar [ref: < Messages.message_id]
+  created_at timestamp
+}
+
+Table Messages {
+  message_id varchar [pk]
+  content text
+  channel_id varchar [ref: > Channels.channel_id]
+  user_id varchar [ref: > Users.user_id]
+  created_at timestamp
+}
+
+Table Channels {
+  channel_id varchar [pk]
+  name varchar [not null]
+  created_at timestamp
+}
+
+Table Users {
+  user_id varchar [pk]
+}
+
+Table ChannelEnrollments {
+  user_id varchar [pk, ref: > Users.user_id]
+  channel_id varchar [pk, ref: > Channels.channel_id]
+}
+
+Table Workspaces {
+  workspace_id varchar [pk]
+  workspace_name varchar
+  created_at timestamp
+}
+
+Table WorkspaceEnrollments {
+  user_id varchar [pk, ref: > Users.user_id]
+  workspace_id varchar [pk, ref: > Workspaces.workspace_id]
+  created_at timestamp
+}
+
