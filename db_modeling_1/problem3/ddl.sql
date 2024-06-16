@@ -30,6 +30,7 @@ CREATE TABLE Orders (
     order_date DATETIME NOT NULL,
     total_items INT NOT NULL,
     payment_status BOOLEAN NOT NULL,
+    use_points INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
@@ -49,13 +50,12 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (item_id) REFERENCES MenuItems(item_id)
 );
 
--- SetItems テーブルの作成
-CREATE TABLE SetItems (
-    set_item_id INT PRIMARY KEY AUTO_INCREMENT,
-    set_id INT NOT NULL,
-    item_id INT NOT NULL,
-    quantity INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (set_id) REFERENCES MenuItems(item_id),
-    FOREIGN KEY (item_id) REFERENCES MenuItems(item_id)
+-- Points テーブルの作成
+CREATE TABLE Points (
+    point_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT NOT NULL,
+    points INT,
+    expiration_date DATETIME,
+    get_date DATETIME,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );

@@ -28,9 +28,9 @@ INSERT INTO OrderItems (order_id, item_id, quantity, price, tax, wasabi, shari) 
 (2, 4, 1, 100, 0.1, TRUE, '大'), -- 玉子1つわさび有りシャリ大
 (2, 5, 1, 180, 0.1, TRUE, '大'); -- えび1つわさび有りシャリ大
 
--- SetItems テーブルにデータを挿入
-INSERT INTO SetItems (set_id, item_id, quantity) VALUES
-(1, 4, 2), -- わだつみセットに玉子2皿
-(1, 5, 3), -- わだつみセットにえび3皿
-(2, 4, 1), -- しおんセットに玉子1皿
-(2, 5, 1); -- しおんセットにえび1皿
+-- Points　テーブルにデータを挿入
+INSERT INTO Points (customer_id, points, expiration_date, get_date) VALUES
+(1,100,'2024-10-08 14:00:00', '2024-06-08 14:00:00'),
+(1,-100,'9999-01-01 14:00:00', '2024-06-08 14:00:00'),
+(1,300,'2024-10-15 14:00:00', '2024-06-15 14:00:00');
+
