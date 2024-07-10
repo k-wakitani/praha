@@ -1,0 +1,32 @@
+Table Projects {
+  project_id varchar [pk]
+  project_name varchar [not null]
+  start_date date [not null]
+  end_date date
+  created_at timestamp
+}
+
+Table Tasks {
+  task_id varchar [pk]
+  task_name varchar
+  assignee varchar [ref: > Users.user_id]
+  project_id varchar [ref: > Projects.project_id]
+  start_date date
+  end_date date
+  status_id int
+}
+
+Table Users {
+  user_id varchar [pk]
+  user_name varchar
+  user_email varchar
+  created_at timestamp
+}
+
+Table Comments {
+  comment_id varchar [pk]
+  content text
+  created_at timestamp
+  user_id varchar [ref: > Users.user_id]
+  task_id varchar [ref: > Tasks.task_id]
+}

@@ -1,0 +1,36 @@
+Table Users {
+  user_id int [pk, increment]
+  user_name varchar [not null]
+  user_email varchar [not null]
+  birth_date date [not null]
+  created_at datetime
+}
+
+Table FollowRelations {
+  follow_relation_id int [pk, increment]
+  user_id int [ref: > Users.user_id]
+  follower_id int [ref: > Users.user_id]
+  created_at datetime
+}
+
+Table Posts {
+  post_id int [pk, increment]
+  user_id int [ref: > Users.user_id]
+  content text
+  created_at datetime
+}
+
+Table Comments {
+  comment_id int [pk, increment]
+  content text
+  user_id int [ref: > Users.user_id]
+  post_id int [ref: > Posts.post_id]
+  created_at datetime
+}
+
+Table Likes {
+  like_id int [pk, increment]
+  user_id int [ref: > Users.user_id]
+  post_id int [ref: > Posts.post_id]
+  created_at datetime
+}

@@ -1,0 +1,51 @@
+Table Users {
+  user_id varchar [pk]
+  mail varchar
+  address varchar
+  created_at datetime
+}
+
+Table Products {
+  product_id varchar [pk]
+  name varchar
+  description varchar
+  price int
+  stock int
+  created_at datetime
+}
+
+Table Carts {
+  cart_id varchar [pk]
+  user_id varchar [ref: > Users.user_id]
+  created_at datetime
+}
+
+Table CartItems {
+  cart_item_id varchar [pk]
+  cart_id varchar [ref: > Carts.cart_id]
+  product_id varchar [ref: > Products.product_id]
+  created_at datetime
+}
+
+Table Orders {
+  order_id varchar [pk]
+  cart_item_id varchar [ref: > CartItems.cart_item_id]
+  order_date datetime
+  payment_status varchar
+}
+
+Table DeliveryRecords {
+  delivery_record_id varchar [pk]
+  order_id varchar [ref: > Orders.order_id]
+  delivery_address varchar
+  delivery_status_id int [ref: > DeliveryStatus.delivery_status_id]
+  delivery_shipped_at datetime
+  delivery_will_arrive_at datetime
+  created_at datetime
+}
+
+Table DeliveryStatus {
+  delivery_status_id int [pk]
+  delivery_status varchar
+}
+

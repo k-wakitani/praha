@@ -1,0 +1,31 @@
+Table Books {
+  book_id varchar [pk]
+  title varchar
+  author varchar
+  publish_year int
+  genre varchar
+  created_at datetime
+}
+
+Table Users {
+  user_id varchar [pk]
+  name varchar
+  phone_number varchar
+  email varchar
+  created_at datetime
+}
+
+Table BorrowRecords {
+  borrow_record_id varchar [pk]
+  book_id varchar [ref: > Books.book_id]
+  user_id varchar [ref: > Users.user_id]
+  borrow_date date
+  return_date date
+}
+
+Table LateFees {
+  late_fee_id varchar [pk]
+  borrow_record_id varchar [ref: - BorrowRecords.borrow_record_id]
+  amount int
+  paid boolean
+}

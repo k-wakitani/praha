@@ -1,0 +1,39 @@
+Table Users {
+  user_id varchar [pk]
+  user_name varchar
+  user_email varchar
+  created_at timestamp
+}
+
+Table Courses {
+  course_id varchar [pk]
+  course_title varchar
+  course_description text
+  course_creator varchar [ref: > Users.user_id]
+  created_at timestamp
+}
+
+Table Sections {
+  section_id varchar [pk]
+  section_name varchar
+  order int
+  course_id varchar [ref: > Courses.course_id]
+  created_at timestamp
+}
+
+Table Lessons {
+  lesson_id varchar [pk]
+  lesson_name varchar
+  content text
+  order int
+  section_id varchar [ref: > Sections.section_id]
+}
+
+Table CourseEnrollments {
+  course_enrollment_id varchar [pk]
+  user_id varchar [ref: > Users.user_id]
+  course_id varchar [ref: > Courses.course_id]
+  learning_stared_at datetime
+  learning_end_at datetime
+  created_at timestamp
+}
