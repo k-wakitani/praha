@@ -117,3 +117,19 @@ INSERT INTO DocumentsEditHistories (document_edit_history_id, document_id, user_
 
 COMMIT;
 ```
+
+## ドキュメントに順番をつける場合
+
+Documentテーブルにorder_indexカラムを追加する
+```sql
+ALTER TABLE Documents
+ADD COLUMN order_index DOUBLE;
+```
+
+order_indexカラムでディレクトリ内の順番を保持する  
+次のようなルールでorder_indexを計算する  
+1. 先頭に移動するとき，移動が起こる前に先頭にいたorder_indexの半分の値にする
+1. 二つのドキュメントの間に移動する時，それらのドキュメントの平均値を用いる
+1. 最後尾に移動するとき，元々持っていたorder_indexに大きな数（65536など）を足す
+
+参考：[TrelloのAPIリクエストを眺めてみた](https://zenn.dev/ktom106/articles/07aa8b0e43e93b)
