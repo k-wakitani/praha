@@ -1,16 +1,16 @@
 Table Documents {
   document_id varchar [pk]
   content text
+  status_id int [ref: > DocumentStatus.id]
   created_at timestamp
-  directory_id varchar [ref: - Directories.directory_id]
+  directory_id varchar [ref: > Directories.directory_id]
 }
 
 Table DocumentsEditHistories {
   document_edit_history_id varchar [pk]
   document_id varchar [ref: > Documents.document_id]
   user_id varchar [ref: > Users.user_id]
-  status_id int [ref: > DocumentStatus.id]
-  created_at timestamp
+  edited_at timestamp
 }
 
 Table DocumentStatus {
@@ -20,6 +20,7 @@ Table DocumentStatus {
 
 Table Directories {
   directory_id varchar [pk]
+  parent_directory_id varchar [ref: - Directories.directory_id]
   name  varchar
   created_at timestamp
 }
